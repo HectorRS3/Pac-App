@@ -1,8 +1,0 @@
-{
-  "name": "pac-app",
-  "version": "1.0.0",
-  "description": "Integration of Pac API and Pac Client",
-  "main": "null",
-  "author": "Juan De Jesus <jdejesus93@gmail.com>",
-  "license": "MIT"
-}
