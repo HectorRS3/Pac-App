@@ -5,9 +5,14 @@ services:
     build: ./app # path to dockerfile
     ports: # Port binding to host from docker container
       - "80:80" # Bind port 3000 of host to 3000 of container
+    environment:
+      PORT: 80
+      API_ROOT_URL: backend
     container_name: frontend-docker
     restart: always # What to do if container crashes
     links:
+      - backend
+    depends_on:
       - backend
   # Create backend container
   backend:
@@ -16,23 +21,29 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - NODE_ENV="production"
-      - DB_NAME="pac_db"
-      - DB_USER="admin"
-      - DB_PASS="pass1234"
-      - DB_HOST=db
-      - SECRET="A1CDB7CFA1C88EED87A639059A18AFB8405A2730CDF04A0DC636D8BA75F87B12"
+      NODE_ENV: development
+      DB_NAME: pac_db
+      DB_USER: admin
+      DB_PASS: pass1234
+      DB_HOST: db
+      DB_PORT: 3306
+      SECRET: A1CDB7CFA1C88EED87A639059A18AFB8405A2730CDF04A0DC636D8BA75F87B12
     container_name: backend-docker
     restart: always
     links:
+      - db
+    depends_on:
       - db
   # Create database container
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    ports:
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_USER: admin
       MYSQL_PASSWORD: pass1234
       MYSQL_DATABASE: pac_db
+    container_name: pac-database
