@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+ api:
+  build:
+   context: ./api
+  ports:
+   - 8080:8080
+  env_file:
+    - ./api/.env
+  depends_on:
+      - db   
+  volumes:
+   - ./:/app
+  command: npm run dev
+
+ app:
+  build:
+    context: ./app
+    dockerfile: Dockerfile-dev
+  ports:
+    - 3000:3000
+  depends_on:
+      - api
+  volumes:
+    - ./:/web
+  command: npm start
+
+ db:
+  image: mysql
+  command: --default-authentication-plugin=mysql_native_password
+  restart: always
+  ports:
+    - "3307:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: example
+    MYSQL_USER: admin
+    MYSQL_PASSWORD: pass1234
+    MYSQL_DATABASE: pac_db
