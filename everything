@@ -9,3 +9,4 @@ git pull && cd api \
 && docker-compose exec backend node_modules/.bin/sequelize db:create \
 && docker-compose exec backend node_modules/.bin/sequelize db:migrate \
 && docker-compose exec backend node_modules/.bin/sequelize db:seed:all \
+&& open http://localhost
