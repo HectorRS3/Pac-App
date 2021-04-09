@@ -29,4 +29,12 @@ cd pac-app/
 cd pac-app/
 ./everything-no-docker
 ```
-**Make sure you have a ```.env``` file on the ```api/``` directory, since you will need it to run the project successfully.**
+**Make sure you have a ```.env``` file on the ```api/``` directory with the following vars, since you will need it to run the project successfully.**
+```env
+NODE_ENV="development"
+DB_NAME="pac_db"
+DB_USER="admin"
+DB_PASS="pass1234"
+DB_HOST="localhost"
+SECRET="NoSoSecret"
+```
