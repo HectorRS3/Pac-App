@@ -1,0 +1,15 @@
+sudo service mysql start \
+&& git pull && cd api \
+&& git pull \
+&& cd ../app \
+&& git pull \
+&& cd .. \
+&& cd api \
+&& npm install \
+&& node_modules/.bin/sequelize db:create \
+&& node_modules/.bin/sequelize db:migrate \
+&& node_modules/.bin/sequelize db:seed:all \
+&& pm2 --name api start npm -- start \
+&& cd ../app \
+&& yarn install \
+&& yarn start
