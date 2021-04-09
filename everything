@@ -1,0 +1,11 @@
+#!/bin/bash
+
+git pull && cd api \
+&& git pull \
+&& cd ../app \
+&& git pull \
+&& cd .. \
+&& docker-compose up -d --build\
+&& docker-compose exec backend node_modules/.bin/sequelize db:create \
+&& docker-compose exec backend node_modules/.bin/sequelize db:migrate \
+&& docker-compose exec backend node_modules/.bin/sequelize db:seed:all \
