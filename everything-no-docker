@@ -1,8 +1,8 @@
 sudo service mysql start \
-&& git pull && cd api \
-&& git pull \
+&& git pull origin main && cd api \
+&& git pull origin master\
 && cd ../app \
-&& git pull \
+&& git pull origin master\
 && cd .. \
 && cd api \
 && npm install \
