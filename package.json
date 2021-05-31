@@ -1,0 +1,13 @@
+{
+  "name": "pac-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:juan1003/pac-app.git",
+  "author": "Juan De Jesus <jdejesus93@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "pac-app-api",
+    "pac-app-client"
+  ]
+}
