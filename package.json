@@ -6,7 +6,19 @@
   "author": "Juan De Jesus <jdejesus93@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "api:start": "yarn workspace pac-app-api run dev",
+    "app:start": "yarn workspace pac-app-client start",
+    "clean": "rm -rf node_modules api/node_modules app/node_modules yarn.lock && yarn install",
+    "migrate": "yarn workspace pac-app-api sequelize db:migrate && yarn workspace pac-app-api sequelize db:seed:all",
+    "start": "yarn migrate && concurrently \"yarn api:start\" \"yarn app:start\""
+  },
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  },
   "workspaces": [
+    "app",
+    "api",
     "pac-app-api",
     "pac-app-client"
   ]
