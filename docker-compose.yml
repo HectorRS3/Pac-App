@@ -1,40 +1,5 @@
 version: '3'
 services:
-  # Create frontend container
-  frontend: # Name of our service
-    build: ./app # path to dockerfile
-    ports: # Port binding to host from docker container
-      - "80:80" # Bind port 3000 of host to 3000 of container
-    environment:
-      PORT: 80
-      API_ROOT_URL: backend
-    container_name: frontend-docker
-    restart: always # What to do if container crashes
-    links:
-      - backend
-    depends_on:
-      - backend
-  # Create backend container
-  backend:
-    # Create backend container  
-    build: ./api
-    ports:
-      - "8080:8080"
-    environment:
-      NODE_ENV: development
-      DB_NAME: pac_db
-      DB_USER: admin
-      DB_PASS: pass1234
-      DB_HOST: db
-      DB_PORT: 3306
-      SECRET: A1CDB7CFA1C88EED87A639059A18AFB8405A2730CDF04A0DC636D8BA75F87B12
-    container_name: backend-docker
-    restart: always
-    links:
-      - db
-    depends_on:
-      - db
-  # Create database container
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
