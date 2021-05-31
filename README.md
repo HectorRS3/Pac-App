@@ -10,25 +10,34 @@ In order to run this project, your prerequisites are going to be the following
 * NPM (This is for Ubuntu since it doesn't include npm with nodejs)
 
 ### Instalation
-This project instalation is going to be a ride. First you will need to install PM2 node module globally if you have not yet installed it
+This project instalation is going to be a ez peasy lemon squeazy. First, you will proceed to clone the repository using this command
 ```sh
-sudo npm install -g pm2
+$ git clone --recurse-submodules https://github.com/juan1003/pac-app.git
 ```
-then, you will proceed to clone the repository using this command
+Once you have cloned the project, go to the project's directory and run the mysql container
+
 ```sh
-git clone --recurse-submodules https://github.com/juan1003/pac-app.git
+$ cd pac-app/
+$ docker compose up -d
 ```
-Once you have cloned the project, go to the project's directory and run it
-(Using Docker)
+**If you are not using docker (you should) then install mysql server locally and create an admin user with all privileges**
+
 ```sh
-cd pac-app/
-./everything
+$ mysql -uroot
+
+mysql> CREATE USER 'admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pass1234';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost';
+mysql> CREATE DATABASE pac_db;
 ```
-(Not using Docker)
-```sh
-cd pac-app/
-./everything-no-docker
+
+**NOTE: The "mysql>" is just mysql shell, don't copy it when running queries on mysql shell, please**
+
+Once you have created the user with the privileges, run this script
+
+```sh 
+$ ./launch 
 ```
+
 **Make sure you have a ```.env``` file on the ```api/``` directory with the following vars, since you will need it to run the project successfully.**
 ```env
 NODE_ENV="development"
