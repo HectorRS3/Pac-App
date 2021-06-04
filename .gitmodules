@@ -1,6 +1,6 @@
 [submodule "api"]
 	path = api
-	url = git@github.com:HectorRS3/pac-app-api
+	url = https://github.com/HectorRS3/pac-app-api
 [submodule "app"]
 	path = app
-	url = git@github.com:HectorRS3/Pac-App-Dashboard
+	url = https://github.com/HectorRS3/Pac-App-Dashboard
